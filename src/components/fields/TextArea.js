@@ -1,14 +1,6 @@
 import React from "react";
 
-function InputField({
-  labelWidth,
-  inputWidth,
-  type,
-  label,
-  maxLength,
-  disabled,
-  required,
-}) {
+function TextAreaField({ labelWidth, inputWidth, label, disabled, required }) {
   // disabled & required should be true or false, width should be in percentages, type: tel, number, text
   return (
     <div
@@ -24,17 +16,14 @@ function InputField({
         {required === true ? <span style={{ color: "red" }}> *</span> : null}
       </label>
 
-      <input
-        type={type}
+      <textarea
         className="inputField"
         style={{ width: inputWidth, color: "#595959" }}
-        maxLength={maxLength}
-        min={type === "number" && 0}
         disabled={disabled}
         required={required}
-      />
+      ></textarea>
     </div>
   );
 }
 
-export default InputField;
+export default TextAreaField;

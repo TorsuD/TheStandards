@@ -1,13 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function SelectField({ labelWidth, inputWidth, label, description }) {
+function SelectField({
+  labelWidth,
+  inputWidth,
+  label,
+  description,
+  option1,
+  option2,
+  path,
+}) {
   //   const dat = ["male", "female", "other"];
   return (
     <div
       style={{
         display: "flex",
         alignItems: "center",
-        margin: "40px",
+        marginBottom: "15px",
         whiteSpace: "nowrap",
       }}
     >
@@ -17,9 +26,11 @@ function SelectField({ labelWidth, inputWidth, label, description }) {
         style={{ width: inputWidth, color: "#595959" }}
       >
         <option>{description}</option>
-        {/* {dat.map((item) => {
-          return <option key={item}>{item}</option>;
-        })} */}
+
+        <option>
+          <Link to={"/test"}>{option1}</Link>
+        </option>
+        <option>{option2}</option>
       </select>
     </div>
   );
