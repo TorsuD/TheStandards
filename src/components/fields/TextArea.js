@@ -9,6 +9,7 @@ function TextAreaField({ labelWidth, inputWidth, label, disabled, required }) {
         alignItems: "center",
         marginBottom: "15px",
         whiteSpace: "nowrap",
+        color: "rgb(92, 92, 92)",
       }}
     >
       <label style={{ width: labelWidth, fontSize: "90%" }}>

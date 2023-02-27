@@ -1,19 +1,12 @@
 import React, { useState } from "react";
-import { GiReceiveMoney } from "../../node_modules/react-icons/gi/index.esm";
 import InputField from "../components/fields/InputField";
 import Label from "../components/label/Label";
 import SelectField from "../components/fields/SelectField";
 import ButtonComponent from "../components/button/ButtonComponent";
 import TextAreaField from "../components/fields/TextArea";
-import {
-  FiCloudRain,
-  FiEye,
-  FiFeather,
-  FiGift,
-  FiPaperclip,
-} from "react-icons/fi";
-import { Menu, Text } from "@mantine/core";
-import { MdColorLens } from "react-icons/md";
+import ListOfValue from "../components/fields/ListOfValue";
+import DataTable from "../components/data-table/DataTable";
+import ButtonType from "../components/button/ButtonType";
 const host = window.location.host;
 
 const themes = {
@@ -35,6 +28,22 @@ const themes = {
     nextColor: "cyan",
   },
 
+  // red
+  theme2: {
+    backgroundColor: "#facfcf",
+    backgroundImage: `url("http://${host}/assets/redwall.jpeg")`,
+    headerColor: "#ed716d",
+    buttonColor: "#ed716d",
+    nextColor: "red",
+  },
+  // grape or violet
+  theme3: {
+    backgroundColor: "#f2dcfa",
+    backgroundImage: `url("http://${host}/assets/purpr.webp")`,
+    headerColor: "#995ead",
+    buttonColor: "#c895f5",
+    nextColor: "grape",
+  },
   // orange
   theme4: {
     backgroundColor: "#faddca",
@@ -44,23 +53,6 @@ const themes = {
     nextColor: "orange",
   },
 
-  // grape or violet
-  theme3: {
-    backgroundColor: "#f2dcfa",
-    backgroundImage: `url("http://${host}/assets/purpr.webp")`,
-    headerColor: "#995ead",
-    buttonColor: "#c895f5",
-    nextColor: "grape",
-  },
-
-  // red
-  theme2: {
-    backgroundColor: "#facfcf",
-    backgroundImage: `url("http://${host}/assets/redwall.jpeg")`,
-    headerColor: "#ed716d",
-    buttonColor: "#ed716d",
-    nextColor: "red",
-  },
   // green
   theme5: {
     backgroundColor: "#b1fcb2",
@@ -97,105 +89,55 @@ function CashDeposit() {
   function themeColor5() {
     setThemeState(themes.theme5);
   }
+
+  // creating states to be used in the application
+  const [permittedBal, setPermittedBal] = useState();
+  const [availableBal, setAvailableBal] = useState();
+  const [ledgerBal, setLedgerBal] = useState();
+  const [accountBranch, setAccountBranch] = useState();
+  const [transactionType, setTransactionType] = useState("CADD - CASH DEPOSIT");
+  const handleEnter = () => {
+    alert("Populate");
+  };
+
   return (
     <div>
       <div
         className="cash__deposit"
-        style={{ backgroundColor: themeState.backgroundColor, height: "110vh" }}
+        style={{
+          backgroundColor: themeState.backgroundColor,
+          paddingTop: "35px",
+        }}
       >
         {/**Header */}
-        <div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              width: "100%",
-              paddingRight: "15px",
-              color: "white",
-              height: "50px",
-              marginBottom: "20px",
-              backgroundColor: themeState.headerColor,
-              fontSize: "20px",
-              textTransform: "uppercase",
-              fontWeight: "700",
-              paddingLeft: "15px",
-            }}
-          >
-            <div style={{ display: "flex" }}>
-              <div style={{ marginRight: "10px", marginBottom: "5px" }}>
-                <GiReceiveMoney />
-              </div>
-              <div>Cash Deposit</div>
-            </div>
 
-            <div>
-              <Menu shadow="md" width={200}>
-                <Menu.Target>
-                  <Text>
-                    <MdColorLens size={24} />
-                  </Text>
-                </Menu.Target>
-
-                <Menu.Dropdown>
-                  <Menu.Label>Choose a theme</Menu.Label>
-                  <div onClick={themeColor4}>
-                    <Menu.Item
-                      icon={<FiCloudRain size={14} color={"orange"} />}
-                      style={{ color: "orange" }}
-                    >
-                      Orange
-                    </Menu.Item>
-                  </div>
-
-                  <div onClick={themeColor1}>
-                    <Menu.Item
-                      icon={<FiEye size={14} color={"blue"} />}
-                      style={{ color: "blue" }}
-                    >
-                      Blue
-                    </Menu.Item>
-                  </div>
-
-                  <div onClick={themeColor2}>
-                    <Menu.Item
-                      icon={<FiPaperclip size={14} color={"red"} />}
-                      style={{ color: "red" }}
-                    >
-                      Red
-                    </Menu.Item>
-                  </div>
-
-                  <div onClick={themeColor5}>
-                    <Menu.Item
-                      icon={<FiFeather size={14} color={"green"} />}
-                      style={{ color: "green" }}
-                    >
-                      Green
-                    </Menu.Item>
-                  </div>
-
-                  <div onClick={themeColor3}>
-                    <Menu.Item
-                      icon={<FiGift size={14} color={"purple"} />}
-                      style={{ color: "purple" }}
-                    >
-                      Grape
-                    </Menu.Item>
-                  </div>
-                </Menu.Dropdown>
-              </Menu>
-            </div>
-          </div>
-        </div>
         {/**Top Level */}
         <div className="button-section" style={{ display: "flex" }}>
           <div className="action-button">
             <ButtonComponent
+              label="Find By ID"
+              buttonBackgroundColor={themeState.headerColor}
+              buttonWidth="130px"
+              buttonHeight="34px"
+              buttonColor="white"
+            />
+          </div>
+
+          <div className="action-button">
+            <ButtonComponent
+              label="Find By Number"
+              buttonBackgroundColor={themeState.headerColor}
+              buttonWidth="130px"
+              buttonHeight="34px"
+              buttonColor="white"
+            />
+          </div>
+          <div className="action-button">
+            <ButtonComponent
               label="Print Receipt"
               buttonBackgroundColor={themeState.headerColor}
-              buttonWidth="170px"
-              buttonHeight="40px"
+              buttonWidth="130px"
+              buttonHeight="34px"
               buttonColor="white"
             />
           </div>
@@ -204,200 +146,231 @@ function CashDeposit() {
             <ButtonComponent
               label="View Voucher"
               buttonBackgroundColor={themeState.headerColor}
-              buttonWidth="170px"
-              buttonHeight="40px"
+              buttonWidth="130px"
+              buttonHeight="34px"
               buttonColor="white"
             />
           </div>
         </div>
-        <div
-          className="cashDeposit__container"
-          style={{
-            display: "flex",
-            flex: 1,
-            justifyContent: "space-between",
-            backgroundColor: "white",
-            boxShadow: "0px -1px 9px -1px rgba(0,0,0,0.75)",
-            marginLeft: "15px",
-            marginRight: "15px",
-            borderRadius: "5px",
-          }}
-        >
-          {/**Left Section */}
+
+        {/*Whole card*/}
+        <div className="whole-section" style={{ display: "flex" }}>
+          {/*The left Card*/}
           <div
+            className="cashDeposit__container"
             style={{
-              flex: "0.5",
-              padding: "20px",
-              borderRadius: "4px",
+              display: "flex",
+              flex: 0.7,
+              justifyContent: "space-between",
+              backgroundColor: "white",
+              boxShadow: "4px 5px 15px -1px rgba(105,105,105,0.75)",
+              marginLeft: "15px",
+              marginRight: "15px",
+              borderRadius: "5px",
             }}
           >
-            <InputField
-              label={"Transaction Type"}
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-            />
+            {/**Left Section */}
+            <div
+              className="left-section"
+              style={{
+                flex: "0.5",
+                // padding: "20px",
+                borderRadius: "4px",
+              }}
+            >
+              <InputField
+                label={"Transaction Type"}
+                labelWidth={"40%"}
+                inputWidth={"50%"}
+                disabled={true}
+                value={transactionType}
+              />
+              <div onKeyDown={(e) => e.key === "Enter" && handleEnter()}>
+                <InputField
+                  label={"Credit Account"}
+                  labelWidth={"40%"}
+                  inputWidth={"50%"}
+                  required={true}
+                  type="number"
+                />
+              </div>
 
-            <InputField
-              label={"Credit Account"}
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-              required={true}
-            />
+              <InputField
+                label={"Currency"}
+                labelWidth={"40%"}
+                inputWidth={"50%"}
+                required={true}
+              />
+              <InputField
+                label={"Product"}
+                labelWidth={"40%"}
+                inputWidth={"50%"}
+              />
 
-            <InputField
-              label={"Currency"}
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-              required={true}
-            />
-            <InputField
-              label={"Product"}
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-            />
+              <InputField
+                label={"Amount "}
+                type="number"
+                labelWidth={"40%"}
+                inputWidth={"25%"}
+                required={true}
+              />
+              <SelectField
+                label={"Source of Funds"}
+                labelWidth={"40%"}
+                inputWidth={"50%"}
+              />
+              <SelectField
+                label={"3rd Party Transaction"}
+                labelWidth={"40%"}
+                description={"Select Yes/No"}
+                type="select"
+                inputWidth={"50%"}
+                option1={"YES"}
+                option2={"NO"}
+              />
+            </div>
 
-            <InputField
-              label={"Amount "}
-              type="number"
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-              required={true}
-            />
-            <SelectField
-              label={"Source of Funds"}
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-            />
-            <SelectField
-              label={"Third Party Transaction"}
-              labelWidth={"40%"}
-              description={"Select Yes/No"}
-              type="select"
-              inputWidth={"50%"}
-              option1={"YES"}
-              option2={"NO"}
-            />
+            {/*Right section*/}
+            <div
+              style={{
+                flex: "0.5",
+                padding: "20px",
+                borderRadius: "4px",
+              }}
+            >
+              <InputField
+                label={"Voucher Ref"}
+                labelWidth={"40%"}
+                inputWidth={"50%"}
+              />
+              <ButtonComponent
+                label="SigVer"
+                buttonBackgroundColor={themeState.headerColor}
+                buttonWidth="100px"
+                buttonHeight="34px"
+                buttonColor="white"
+              />
+              <InputField
+                label={"Value Date"}
+                type="date"
+                labelWidth={"40%"}
+                inputWidth={"50%"}
+              />
+
+              <ListOfValue
+                label="List of Value"
+                labelWidth={"40%"}
+                inputWidth={"50%"}
+              />
+
+              <InputField
+                label={"A/C Name"}
+                labelWidth={"40%"}
+                inputWidth={"50%"}
+              />
+              <TextAreaField
+                labelWidth={"40%"}
+                inputWidth={"50%"}
+                label={"Narration 1"}
+                required={true}
+              />
+              <InputField
+                label={"Deposit By"}
+                required={true}
+                labelWidth={"40%"}
+                inputWidth={"50%"}
+              />
+              <InputField
+                label={"Contact / Telephone"}
+                type="number"
+                labelWidth={"40%"}
+                inputWidth={"50%"}
+              />
+            </div>
           </div>
 
-          {/*Right section*/}
-          <div
-            style={{
-              flex: "0.5",
-              padding: "20px",
-              borderRadius: "4px",
-            }}
-          >
-            <InputField
-              label={"Voucher Ref"}
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-            />
-            <ButtonComponent
-              label="SigVer"
-              buttonBackgroundColor={themeState.headerColor}
-              buttonWidth="30%"
-              buttonHeight="35px"
-              buttonColor="white"
-            />
-            <InputField
-              label={"Value Date"}
-              type="date"
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-            />
+          {/**Right Sectionn Read Only */}
+          <div className="read-only-section" style={{ flex: 0.3 }}>
+            {/* <hr /> */}
 
-            <InputField
-              label={"A/C Number"}
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-            />
+            <div
+              style={{
+                backgroundColor: "white",
+                boxShadow: "4px 5px 15px -1px rgba(105,105,105,0.75)",
+                marginLeft: "15px",
+                marginRight: "15px",
+                borderRadius: "5px",
+                paddingLeft: "15px",
+                paddingRight: "15px",
+                height: "100%",
+                width: "90%",
+                display: "grid",
+                placeItems: "center",
+              }}
+            >
+              <div>
+                <div
+                  style={{
+                    marginLeft: "15px",
+                    marginBottom: "15px",
+                    textAlign: "center",
+                  }}
+                >
+                  <Label
+                    label="Account Balance"
+                    color={themeState.headerColor}
+                    fontWeight={700}
+                    fontSize={24}
+                  />
+                </div>
 
-            <TextAreaField
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-              label={"Narration"}
-              required={true}
-            />
+                <InputField
+                  label={"Permitted Balance"}
+                  type="number"
+                  labelWidth={"70%"}
+                  inputWidth={"70%"}
+                  disabled={true}
+                  value={permittedBal}
+                />
+                <br />
+                <InputField
+                  label={"Ledger Balance"}
+                  type="number"
+                  labelWidth={"70%"}
+                  inputWidth={"70%"}
+                  disabled={true}
+                  value={ledgerBal}
+                />
+                <br />
 
-            <InputField
-              label={"Deposit By"}
-              required={true}
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-            />
-            <InputField
-              label={"Contact / Telephone"}
-              type="number"
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-            />
+                <InputField
+                  label={"Available Balance"}
+                  type="number"
+                  labelWidth={"70%"}
+                  inputWidth={"70%"}
+                  disabled={true}
+                  value={availableBal}
+                />
+                <br />
+
+                <InputField
+                  label={"Account Branch"}
+                  type="number"
+                  labelWidth={"70%"}
+                  inputWidth={"70%"}
+                  disabled={true}
+                  value={accountBranch}
+                />
+              </div>
+            </div>
           </div>
+          {/*End of Right Section*/}
         </div>
 
-        {/**Lower Level */}
-        <div
-          style={{
-            marginTop: "10px",
-            marginLeft: "15px",
-            marginBottom: "15px",
-          }}
-        >
-          <Label
-            label="Account Balance"
-            color={themeState.headerColor}
-            fontWeight={700}
-            fontSize={24}
-          />
-        </div>
-
-        <div
-          className="cashDeposit__container"
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            backgroundColor: "white",
-            display: "flex",
-            flex: 1,
-            justifyContent: "space-between",
-            boxShadow: "0px -1px 9px -1px rgba(0,0,0,0.75)",
-            marginLeft: "15px",
-            marginRight: "15px",
-            borderRadius: "5px",
-          }}
-        >
-          <div style={{ flex: 0.5, padding: "20px", borderRadius: "4px" }}>
-            <InputField
-              label={"Permitted Balance"}
-              type="number"
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-              disabled={true}
-            />
-            <InputField
-              label={"Ledger Balance"}
-              type="number"
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-              disabled={true}
-            />
-          </div>
-          <div style={{ flex: "0.5", padding: "20px", borderRadius: "4px" }}>
-            <InputField
-              label={"Available Balance"}
-              type="number"
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-              disabled={true}
-            />
-            <InputField
-              label={"Account Branch"}
-              type="number"
-              labelWidth={"40%"}
-              inputWidth={"50%"}
-              disabled={true}
-            />
-          </div>
-        </div>
+        <br />
+        <br />
+        <br />
+        <DataTable />
       </div>
     </div>
   );
