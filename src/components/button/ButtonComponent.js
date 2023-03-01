@@ -18,7 +18,7 @@ function ButtonComponent({
         borderRadius: "4px",
         height: buttonHeight,
         width: buttonWidth,
-        marginBottom: "15px",
+        margin: "10px",
         whiteSpace: "nowrap",
       }}
     >

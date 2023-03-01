@@ -15,10 +15,11 @@ function InputField({
   // disabled & required should be true or false, width should be in percentages, type: tel, number, text
   return (
     <div
+      className="flex-fallen"
       style={{
         display: "flex",
         alignItems: "center",
-        marginBottom: "20px",
+        margin: "10px",
         whiteSpace: "nowrap",
         color: "rgb(92, 92, 92)",
       }}
@@ -33,7 +34,6 @@ function InputField({
       {type === "date" ? (
         <DatePicker
           variant="unstyled"
-          width={inputWidth}
           style={{ width: inputWidth, color: "rgb(92, 92, 92)" }}
           // inputFormat="DD/MM/YYYY"
           placeholder="Pick a date"

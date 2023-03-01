@@ -4,10 +4,11 @@ function TextAreaField({ labelWidth, inputWidth, label, disabled, required }) {
   // disabled & required should be true or false, width should be in percentages, type: tel, number, text
   return (
     <div
+      className="flex-fallen"
       style={{
         display: "flex",
         alignItems: "center",
-        marginBottom: "15px",
+        margin: "10px",
         whiteSpace: "nowrap",
         color: "rgb(92, 92, 92)",
       }}

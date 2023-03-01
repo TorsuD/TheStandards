@@ -1,8 +1,6 @@
 import { Select } from "@mantine/core";
 import React from "react";
-// import {TfiSearch} from 'react-icons/tfi'
 import { IoMdSearch } from "react-icons/io";
-import { FiFeather } from "react-icons/fi";
 
 function ListOfValue({
   labelWidth,
@@ -10,6 +8,7 @@ function ListOfValue({
   placeholder,
   label,
   maxLength,
+  disabled,
 }) {
   const handleOpen = () => {
     var focusTrigger = document.getElementById("theField");
@@ -17,10 +16,11 @@ function ListOfValue({
   };
   return (
     <div
+      className="flex-fallen"
       style={{
         display: "flex",
         alignItems: "center",
-        marginBottom: "20px",
+        margin: "10px",
         whiteSpace: "nowrap",
         color: "rgb(92, 92, 92)",
       }}
@@ -37,6 +37,7 @@ function ListOfValue({
           paddinglleft: "7px",
         }}
         searchable
+        disabled={disabled}
         size={"xs"}
         id="listOfValue"
         rightSection={
