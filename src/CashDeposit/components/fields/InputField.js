@@ -11,6 +11,7 @@ function InputField({
   disabled,
   required,
   value,
+  placeholder,
 }) {
   // disabled & required should be true or false, width should be in percentages, type: tel, number, text
   return (
@@ -51,6 +52,7 @@ function InputField({
           disabled={disabled}
           required={required}
           value={value}
+          placeholder={placeholder}
         />
       )}
     </div>

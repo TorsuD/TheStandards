@@ -1,5 +1,5 @@
 import { Select } from "@mantine/core";
-import React from "react";
+import React, { useState } from "react";
 import { IoMdSearch } from "react-icons/io";
 
 function ListOfValue({
@@ -7,13 +7,21 @@ function ListOfValue({
   inputWidth,
   placeholder,
   label,
-  maxLength,
+  lovData,
+  key,
   disabled,
 }) {
-  const handleOpen = () => {
-    var focusTrigger = document.getElementById("theField");
-    focusTrigger.focus();
-  };
+  // const handleOpen = () => {
+  //   var focusTrigger = document.getElementById("theField");
+  //   focusTrigger.focus();
+  // };
+
+  if (lovData) {
+    lovData = lovData;
+  } else {
+    lovData = ["No data"];
+  }
+
   return (
     <div
       className="flex-fallen"
@@ -37,6 +45,7 @@ function ListOfValue({
           paddinglleft: "7px",
         }}
         searchable
+        key={key}
         disabled={disabled}
         size={"xs"}
         id="listOfValue"
@@ -44,12 +53,7 @@ function ListOfValue({
           <IoMdSearch style={{ marginLeft: "15px" }} size={18} color="grey" />
         }
         styles={{ rightSection: { pointerEvents: "none" } }}
-        data={[
-          { value: "react", label: "React" },
-          { value: "ng", label: "Angular" },
-          { value: "svelte", label: "Svelte" },
-          { value: "vue", label: "Vue" },
-        ]}
+        data={lovData}
       />
     </div>
   );
